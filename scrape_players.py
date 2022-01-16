@@ -64,8 +64,7 @@ def personal_string(url):
         personal = parts[1]
         personal_parts = re.split("…|\.{3,}|\n", personal)
         if len(personal_parts) > 0:
-            major = personal_parts[0].strip().translate(None, string.punctuation)
-            print(major)
+            major = personal_parts[0].strip().translate(str.maketrans('', '', string.punctuation)).strip()
             return major
     return ""
 
