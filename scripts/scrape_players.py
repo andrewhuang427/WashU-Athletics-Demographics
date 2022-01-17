@@ -1,4 +1,3 @@
-from os import remove
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -6,9 +5,9 @@ from constants import teams, headers, Athlete, getYears
 import string
 import re
 
-years = getYears(20, 21)
+years = getYears(16, 21)
 
-columns = ["Sport", "Year", "First Name", "Last Name", "Class", "Hometown", "High School",  "Link", "Personal"]
+columns = ["Sport", "Year", "First Name", "Last Name", "Class", "Hometown", "High School",  "Link"]
 
 def get_players(sport, year, html):
     row = BeautifulSoup(html, "html.parser")
@@ -43,8 +42,8 @@ def get_players(sport, year, html):
                     player.hometown = hometownHighSchool[0]
                     player.highschool = hometownHighSchool[1]
 
-        if player.link != "":
-            player.personal = personal_string(player.link)
+        # if player.link != "":
+        #     player.personal = personal_string(player.link)
 
         if player.first_name != "":
             row = player.to_row()
@@ -55,17 +54,19 @@ def get_players(sport, year, html):
 
 
 def personal_string(url):
+    print(url)
     html = requests.get(url, headers=headers).text
     soup = BeautifulSoup(html, "html.parser")
     container = soup.find("div", {"class" : "synopsis"})
-    text = container.text
-    parts = text.split("PERSONAL")
-    if len(parts) >= 2:
-        personal = parts[1].strip()
-        personal_parts = re.split("…|\.{3,}|\n", personal)
-        if len(personal_parts) > 0:
-            major = personal_parts[0].strip().translate(str.maketrans('', '', string.punctuation)).strip()
-            return major
+    if container != None:
+        text = container.text
+        parts = text.split("PERSONAL")
+        if len(parts) >= 2:
+            personal = parts[1].strip()
+            personal_parts = re.split("…|\.{3,}|\n", personal)
+            if len(personal_parts) > 0:
+                major = personal_parts[0].strip().translate(str.maketrans('', '', string.punctuation)).strip()
+                return major
     return ""
 
 
@@ -88,5 +89,5 @@ def scrape_teams():
 
 df = pd.DataFrame(scrape_teams(), columns=columns)
 
-df.to_csv("./data/players.csv", index=False)
+df.to_csv("../data/players.csv", index=False)
 
