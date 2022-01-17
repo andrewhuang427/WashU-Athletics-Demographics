@@ -5,7 +5,8 @@ from constants import teams, headers, Athlete, getYears
 import string
 import re
 
-years = getYears(16, 21)
+# years = getYears(16, 21)
+years = getYears(10,21)
 
 columns = ["Sport", "Year", "First Name", "Last Name", "Class", "Hometown", "High School",  "Link"]
 
@@ -36,14 +37,20 @@ def get_players(sport, year, html):
             if parts[0] == "Cl.:" or parts[0] == "Yr.:":
                 player.grade = parts[1]
             
-            elif parts[0] == "Hometown/High" or parts[0] == "Hometown:":
-                hometownHighSchool = " ".join(parts[2:]).split(" / ")
+            elif parts[0] == "Hometown:":
+                hometownHighSchool = " ".join(parts[1:]).split(" / ")
                 if len(hometownHighSchool) == 2:
                     player.hometown = hometownHighSchool[0]
                     player.highschool = hometownHighSchool[1]
 
+            elif parts[0] == "Hometown/High":
+                hometownHighSchool = " ".join(parts[2:]).split(" / ")
+                if len(hometownHighSchool) == 2:
+                    player.hometown = hometownHighSchool[0]
+                    player.highschool = hometownHighSchool[1]
         # if player.link != "":
         #     player.personal = personal_string(player.link)
+
 
         if player.first_name != "":
             row = player.to_row()
@@ -76,9 +83,8 @@ def scrape_teams():
         for team in teams:
             sportName = team["sport"]
             print(sportName + " -  " + year)
-            linkBase = team["url"]
-            url = linkBase + year + "/roster"
-            
+            code = team["code"]
+            url = "https://washubears.com/sports/" + str(code) + "/" + str(year) + "/roster"
             response = requests.get(url, headers=headers)
             players = get_players(sportName, year, response.text)       
             for player in players:
@@ -86,8 +92,9 @@ def scrape_teams():
 
     return allAthletes
 
-
 df = pd.DataFrame(scrape_teams(), columns=columns)
+
+print(df)
 
 df.to_csv("../data/players.csv", index=False)
 
