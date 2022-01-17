@@ -5,7 +5,6 @@ from constants import teams, headers, Athlete, getYears
 import string
 import re
 
-# years = getYears(16, 21)
 years = getYears(10,21)
 
 columns = ["Sport", "Year", "First Name", "Last Name", "Class", "Hometown", "High School",  "Link"]
