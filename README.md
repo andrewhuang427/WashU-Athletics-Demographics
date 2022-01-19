@@ -2,13 +2,13 @@
 Study on the demographics of WashU Student-Athletes
 
 ### Technologies
-- React + NextJS
+- React + TailwindCSS
 - Typescript
 - Python
 - Flask
 - Postgres
-- Maps: MapBox + Open Street Map (location)
-- DeepFace (race)
+- Maps: MapBox + Open Street Map
+- DeepFace
 
 ### Tasks
 - ✅ Add lat/long coordinates to athlete column in athletes (Mapbox Search for Geocoding)
@@ -16,7 +16,7 @@ Study on the demographics of WashU Student-Athletes
 - ✅ Create React APP
 - ✅  Import map into react app: Open Street Map (leaflet)
 - ✅ Add markers for athlete locations
-- UI Improvements: Tailwind CSS, Different Color Markers for different teams
+- ✅ UI Improvements: Tailwind CSS, Different Color Markers for different teams
 - DeepFace for racial recognition
 
 

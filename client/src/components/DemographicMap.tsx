@@ -133,7 +133,7 @@ function DemographicMap() {
           <MapContainer
             center={[38.627, -95.1994]}
             zoom={5}
-            scrollWheelZoom={false}
+            scrollWheelZoom={true}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {athletes.map((athlete, index) => {
@@ -152,8 +152,10 @@ function DemographicMap() {
                       </h3>
                       <div className="mb-2">{athlete.sport}</div>
                     </div>
-                    <div className="mb-3">{athlete.highschool + " | " + athlete.hometown}</div>
-                    
+                    <div className="mb-3">
+                      {athlete.highschool + " | " + athlete.hometown}
+                    </div>
+
                     <div className="flex flex-row justify-end">
                       <a href={athlete.link} target="_blank">
                         Player Profile
