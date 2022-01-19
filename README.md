@@ -7,7 +7,8 @@ Study on the demographics of WashU Student-Athletes
 - Python
 - Flask
 - Postgres
-- Maps: MapBox + Open Street Map
+- Maps: MapBox + Open Street Map (location)
+- DeepFace (race)
 
 ### Tasks
 - Add lat/long coordinates to athlete column in athletes (Mapbox Search for Geocoding)

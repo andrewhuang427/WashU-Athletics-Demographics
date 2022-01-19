@@ -1,13 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 from utils.constants import getYears, teams, headers
-from MapBox import MapBox
+from utils.MapBox import MapBox
 from app import db, Athlete
 from dotenv import dotenv_values
 config = dotenv_values(".env")
 
 mb = MapBox(config["MAP_BOX_TOKEN"])
-years = getYears(10, 22)
+years = getYears(13, 22)
 
 def get_players(sport, year, html):
     row = BeautifulSoup(html, "html.parser")
