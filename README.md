@@ -2,7 +2,7 @@
 Study on the demographics of WashU Student-Athletes
 
 ### Technologies
-- React
+- React + NextJS
 - Typescript
 - Python
 - Flask
@@ -14,6 +14,11 @@ Study on the demographics of WashU Student-Athletes
 - Create REST endpoint for accessing all athletes `localhost:5000/athletes`
 - Create React APP
 - Import map into react app: Google Maps API: Open Street Map
+
+
+### Notes
+- Originally tried creating the front end using NextJS (ended up running into bugs with React Leaflet -> not created with considerations for server side rendering)
+- Switched to Create-react-app as a result
 
 ### Resources
 
