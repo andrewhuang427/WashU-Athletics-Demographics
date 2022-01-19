@@ -1,0 +1,191 @@
+{
+  "type": "FeatureCollection",
+  "query": ["miami", "okla"],
+  "features": [
+    {
+      "id": "place.13420499772122320",
+      "type": "Feature",
+      "place_type": ["place"],
+      "relevance": 1,
+      "properties": { "wikidata": "Q2350102" },
+      "text": "Miami",
+      "place_name": "Miami, Oklahoma, United States",
+      "bbox": [-95.053411814, 36.757538004, -94.68006801, 36.999515996],
+      "center": [-94.8774, 36.8746],
+      "geometry": { "type": "Point", "coordinates": [-94.8774, 36.8746] },
+      "context": [
+        {
+          "id": "district.5568266999789660",
+          "wikidata": "Q495564",
+          "text": "Ottawa County"
+        },
+        {
+          "id": "region.652101342588420",
+          "wikidata": "Q1649",
+          "short_code": "US-OK",
+          "text": "Oklahoma"
+        },
+        {
+          "id": "country.19678805456372290",
+          "wikidata": "Q30",
+          "short_code": "us",
+          "text": "United States"
+        }
+      ]
+    },
+    {
+      "id": "poi.455266580194",
+      "type": "Feature",
+      "place_type": ["poi"],
+      "relevance": 0.99,
+      "properties": {
+        "foursquare": "4b140de1f964a520869c23e3",
+        "landmark": true,
+        "address": "I-44",
+        "category": "tourist information, services, tourism, information",
+        "maki": "attraction"
+      },
+      "text": "Oklahoma Welcome Center",
+      "place_name": "Oklahoma Welcome Center, I-44, Miami, Oklahoma 74354, United States",
+      "center": [-94.84598, 36.875424],
+      "geometry": { "coordinates": [-94.84598, 36.875424], "type": "Point" },
+      "context": [
+        { "id": "postcode.10065831074477440", "text": "74354" },
+        {
+          "id": "place.13420499772122320",
+          "wikidata": "Q2350102",
+          "text": "Miami"
+        },
+        {
+          "id": "district.5568266999789660",
+          "wikidata": "Q495564",
+          "text": "Ottawa County"
+        },
+        {
+          "id": "region.652101342588420",
+          "wikidata": "Q1649",
+          "short_code": "US-OK",
+          "text": "Oklahoma"
+        },
+        {
+          "id": "country.19678805456372290",
+          "wikidata": "Q30",
+          "short_code": "us",
+          "text": "United States"
+        }
+      ]
+    },
+    {
+      "id": "address.6357153261557244",
+      "type": "Feature",
+      "place_type": ["address"],
+      "relevance": 0.99,
+      "properties": { "accuracy": "street" },
+      "text": "East 100 Road",
+      "place_name": "East 100 Road, Miami, Oklahoma 74354, United States",
+      "matching_text": "Oklahoma Highway 10",
+      "matching_place_name": "Oklahoma Highway 10, Miami, Oklahoma 74354, United States",
+      "center": [-94.71158, 36.87177],
+      "geometry": { "type": "Point", "coordinates": [-94.71158, 36.87177] },
+      "context": [
+        { "id": "postcode.10065831074477440", "text": "74354" },
+        { "id": "locality.11423597189630130", "text": "Eastside" },
+        {
+          "id": "place.13420499772122320",
+          "wikidata": "Q2350102",
+          "text": "Miami"
+        },
+        {
+          "id": "district.5568266999789660",
+          "wikidata": "Q495564",
+          "text": "Ottawa County"
+        },
+        {
+          "id": "region.652101342588420",
+          "wikidata": "Q1649",
+          "short_code": "US-OK",
+          "text": "Oklahoma"
+        },
+        {
+          "id": "country.19678805456372290",
+          "wikidata": "Q30",
+          "short_code": "us",
+          "text": "United States"
+        }
+      ]
+    },
+    {
+      "id": "address.758420878105098",
+      "type": "Feature",
+      "place_type": ["address"],
+      "relevance": 0.74,
+      "properties": { "accuracy": "street" },
+      "text": "Oklahoma Drive",
+      "place_name": "Oklahoma Drive, Xenia, Ohio 45385, United States",
+      "center": [-83.972, 39.67752],
+      "geometry": { "type": "Point", "coordinates": [-83.972, 39.67752] },
+      "context": [
+        { "id": "postcode.11173498026804420", "text": "45385" },
+        {
+          "id": "place.12934100140818700",
+          "wikidata": "Q1915576",
+          "text": "Xenia"
+        },
+        {
+          "id": "district.7885700712705190",
+          "wikidata": "Q825807",
+          "text": "Greene County"
+        },
+        {
+          "id": "region.9595035861229390",
+          "wikidata": "Q1397",
+          "short_code": "US-OH",
+          "text": "Ohio"
+        },
+        {
+          "id": "country.19678805456372290",
+          "wikidata": "Q30",
+          "short_code": "us",
+          "text": "United States"
+        }
+      ]
+    },
+    {
+      "id": "address.227287722173352",
+      "type": "Feature",
+      "place_type": ["address"],
+      "relevance": 0.74,
+      "properties": { "accuracy": "street" },
+      "text": "Oklahoma Street",
+      "place_name": "Oklahoma Street, Rochester, Indiana 46975, United States",
+      "center": [-86.42178, 41.12192],
+      "geometry": { "type": "Point", "coordinates": [-86.42178, 41.12192] },
+      "context": [
+        { "id": "postcode.13271942297586950", "text": "46975" },
+        {
+          "id": "place.10573018726320780",
+          "wikidata": "Q991186",
+          "text": "Rochester"
+        },
+        {
+          "id": "district.11383381932814220",
+          "wikidata": "Q506157",
+          "text": "Fulton County"
+        },
+        {
+          "id": "region.9456556908766400",
+          "wikidata": "Q1415",
+          "short_code": "US-IN",
+          "text": "Indiana"
+        },
+        {
+          "id": "country.19678805456372290",
+          "wikidata": "Q30",
+          "short_code": "us",
+          "text": "United States"
+        }
+      ]
+    }
+  ],
+  "attribution": "NOTICE: © 2021 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained. POI(s) provided by Foursquare."
+}

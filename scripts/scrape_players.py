@@ -1,31 +1,33 @@
 import requests
 from bs4 import BeautifulSoup
-import pandas as pd
-from constants import teams, headers, Athlete, getYears
-import string
-import re
+from utils.constants import getYears, teams, headers
+from MapBox import MapBox
+from app import db, Athlete
+from dotenv import dotenv_values
+config = dotenv_values(".env")
 
-years = getYears(10,21)
-
-columns = ["Sport", "Year", "First Name", "Last Name", "Class", "Hometown", "High School",  "Link"]
+mb = MapBox(config["MAP_BOX_TOKEN"])
+years = getYears(10, 22)
 
 def get_players(sport, year, html):
     row = BeautifulSoup(html, "html.parser")
     rows = row.find_all("tr")
-    players = []
     for row in rows:
-        player = Athlete()
-        player.sport = sport
-        player.year = year
-        
+        first_name = ""
+        last_name = ""
+        link = ""
+        grade = ""
+        hometown = ""
+        highschool = ""
+
         # Name
         name = row.find("th").find("a", href=True)
         if name != None:
             trimmed = name.text.strip()
             parts = trimmed.split()
-            player.first_name = parts[0]
-            player.last_name =  parts[1]
-            player.link = "https://washubears.com" + name["href"]
+            first_name = parts[0]
+            last_name = parts[1]
+            link = "https://washubears.com" + name["href"]
 
         # Class and High School / Hometown
         fields = row.find_all("td")
@@ -34,46 +36,39 @@ def get_players(sport, year, html):
             parts = value.split()
 
             if parts[0] == "Cl.:" or parts[0] == "Yr.:":
-                player.grade = parts[1]
-            
+                grade = parts[1]
+
             elif parts[0] == "Hometown:":
                 hometownHighSchool = " ".join(parts[1:]).split(" / ")
                 if len(hometownHighSchool) == 2:
-                    player.hometown = hometownHighSchool[0]
-                    player.highschool = hometownHighSchool[1]
+                    hometown = hometownHighSchool[0]
+                    highschool = hometownHighSchool[1]
 
             elif parts[0] == "Hometown/High":
                 hometownHighSchool = " ".join(parts[2:]).split(" / ")
                 if len(hometownHighSchool) == 2:
-                    player.hometown = hometownHighSchool[0]
-                    player.highschool = hometownHighSchool[1]
-        # if player.link != "":
-        #     player.personal = personal_string(player.link)
+                    hometown = hometownHighSchool[0]
+                    highschool = hometownHighSchool[1]
 
+        hometown_coordinates = mb.getCoordinates(hometown)
 
-        if player.first_name != "":
-            row = player.to_row()
-            if row != None:
-                players.append(row)
+        if first_name != "":
+            # Save Player here
+            athlete = Athlete(
+                sport=sport,
+                year=year,
+                first_name=first_name,
+                last_name=last_name,
+                grade=grade,
+                hometown=hometown,
+                hometown_latitude=hometown_coordinates[0],
+                hometown_longitude=hometown_coordinates[1],
+                highschool=highschool,
+                link=link
+            )
 
-    return players
-
-
-def personal_string(url):
-    print(url)
-    html = requests.get(url, headers=headers).text
-    soup = BeautifulSoup(html, "html.parser")
-    container = soup.find("div", {"class" : "synopsis"})
-    if container != None:
-        text = container.text
-        parts = text.split("PERSONAL")
-        if len(parts) >= 2:
-            personal = parts[1].strip()
-            personal_parts = re.split("…|\.{3,}|\n", personal)
-            if len(personal_parts) > 0:
-                major = personal_parts[0].strip().translate(str.maketrans('', '', string.punctuation)).strip()
-                return major
-    return ""
+            db.session.add(athlete)
+            db.session.commit()
 
 
 def scrape_teams():
@@ -83,17 +78,12 @@ def scrape_teams():
             sportName = team["sport"]
             print(sportName + " -  " + year)
             code = team["code"]
-            url = "https://washubears.com/sports/" + str(code) + "/" + str(year) + "/roster"
+            url = "https://washubears.com/sports/" + \
+                str(code) + "/" + str(year) + "/roster"
             response = requests.get(url, headers=headers)
-            players = get_players(sportName, year, response.text)       
-            for player in players:
-                allAthletes.append(player)
+            get_players(sportName, year, response.text)
 
     return allAthletes
 
-df = pd.DataFrame(scrape_teams(), columns=columns)
 
-print(df)
-
-df.to_csv("../data/players.csv", index=False)
-
+scrape_teams()
