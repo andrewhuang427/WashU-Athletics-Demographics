@@ -11,10 +11,13 @@ Study on the demographics of WashU Student-Athletes
 - DeepFace (race)
 
 ### Tasks
-- Add lat/long coordinates to athlete column in athletes (Mapbox Search for Geocoding)
-- Create REST endpoint for accessing all athletes `localhost:5000/athletes`
-- Create React APP
-- Import map into react app: Google Maps API: Open Street Map
+- ✅ Add lat/long coordinates to athlete column in athletes (Mapbox Search for Geocoding)
+- ✅  Create REST endpoint for accessing all athletes `localhost:5000/athletes`
+- ✅ Create React APP
+- ✅  Import map into react app: Open Street Map (leaflet)
+- ✅ Add markers for athlete locations
+- UI Improvements: Tailwind CSS, Different Color Markers for different teams
+- DeepFace for racial recognition
 
 
 ### Notes

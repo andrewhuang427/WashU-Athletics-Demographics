@@ -5,7 +5,7 @@ import json
 
 class MapBox:
     def __init__(self, access_token) -> None:
-        self.root_url = "https://api.mapbox.com/geocoding/v5/mapbox.places/{}.json?types=place&access_token={}"
+        self.root_url = "https://api.mapbox.com/geocoding/v5/mapbox.places/{}.json?types=place%2Caddress%2Cregion&access_token={}"
         self.access_token = access_token
 
     def getCoordinates(self, location_str):
