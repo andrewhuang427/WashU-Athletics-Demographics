@@ -17,7 +17,6 @@ Study on the demographics of WashU Student-Athletes
 - ✅  Import map into react app: Open Street Map (leaflet)
 - ✅ Add markers for athlete locations
 - ✅ UI Improvements: Tailwind CSS, Different Color Markers for different teams
-- DeepFace for racial recognition
 
 
 ### Notes
